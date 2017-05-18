@@ -24,24 +24,8 @@ namespace InternalSchedulingTool
             this.password = password;
             InitializeComponent();
             var templateList = new List<string>();
-            templateList.Add("_wyndham-full-audit-master-_-1");
-            templateList.Add("_wyndham-full-audit-master-_-10");
-            templateList.Add("_wyndham-full-audit-master-_-10_vuln-testing");
-            templateList.Add("_wyndham-full-audit-master-_-10-_-with-web-spidering");
-            templateList.Add("_wyndham-full-audit-master-_-10-fingerprinting65%");
-            templateList.Add("_wyndham-full-audit-master-_-15");
-            templateList.Add("_wyndham-full-audit-master-_-15-_-emea");
-            templateList.Add("_wyndham-full-audit-master-_-15-_-stjohn");
-            templateList.Add("_wyndham-full-audit-master-_-15-_-stjohn-test-discovery-only");
-            templateList.Add("_wyndham-full-audit-master-_-20");
-            templateList.Add("_wyndham-full-audit-master-_-20-enhanced-logging");
-            templateList.Add("_wyndham-full-audit-master-_-3");
-            templateList.Add("_wyndham-full-audit-master-_-30");
-            templateList.Add("_wyndham-full-audit-master-_-33");
-            templateList.Add("_wyndham-full-audit-master-_-40");
-            templateList.Add("_wyndham-full-audit-master-_-5");
-            templateList.Add("_wyndham-full-audit-master-_-8");
-            templateList.Add("_wyndham-full-audit-without-web-spider-_-200");
+            //Add your templates here. replace spaces with dashes, replace dashes with underscores.
+            templateList.Add("test-_-template");
             cmbTemplate.DataSource = templateList.ToList();
             cmbTemplate.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cmbTemplate.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -88,24 +72,8 @@ namespace InternalSchedulingTool
         public ScanForm()
         {
             var templateList = new List<string>();
-            templateList.Add("_wyndham-full-audit-master-_-1");
-            templateList.Add("_wyndham-full-audit-master-_-10");
-            templateList.Add("_wyndham-full-audit-master-_-10_vuln-testing");
-            templateList.Add("_wyndham-full-audit-master-_-10-_-with-web-spidering");
-            templateList.Add("_wyndham-full-audit-master-_-10-fingerprinting65%");
-            templateList.Add("_wyndham-full-audit-master-_-15");
-            templateList.Add("_wyndham-full-audit-master-_-15-_-emea");
-            templateList.Add("_wyndham-full-audit-master-_-15-_-stjohn");
-            templateList.Add("_wyndham-full-audit-master-_-15-_-stjohn-test-discovery-only");
-            templateList.Add("_wyndham-full-audit-master-_-20");
-            templateList.Add("_wyndham-full-audit-master-_-20-enhanced-logging");
-            templateList.Add("_wyndham-full-audit-master-_-3");
-            templateList.Add("_wyndham-full-audit-master-_-30");
-            templateList.Add("_wyndham-full-audit-master-_-33");
-            templateList.Add("_wyndham-full-audit-master-_-40");
-            templateList.Add("_wyndham-full-audit-master-_-5");
-            templateList.Add("_wyndham-full-audit-master-_-8");
-            templateList.Add("_wyndham-full-audit-without-web-spider-_-200");
+            //Add your templates here. replace spaces with dashes, replace dashes with underscores.
+            templateList.Add("test-_-template");
             cmbTemplate.DataSource = templateList.ToList();
             cmbTemplate.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cmbTemplate.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -262,7 +230,7 @@ namespace InternalSchedulingTool
         public void generateReport(string scanid)
         {
             //First, save the report configuration
-           HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.82.16.31:3780/api/1.1/xml");
+           HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.10.10.10:3780/api/1.1/xml");
            req.ContentType = "text/xml";
            //Don't worry about bad certs. We know nexpose has one.
            req.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => { return true; };
