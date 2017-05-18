@@ -65,9 +65,10 @@ namespace InternalSchedulingTool
 
         public string getToken()
         {
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.82.16.31:3780/api/1.1/xml");
+            //This should be your Nexpose IP. Replace 10.10.10.10 with the correct IP, but don't change the rest
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.10.10.10:3780/api/1.1/xml");
             req.ContentType = "text/xml";
-            //Don't worry about bad certs. We know nexpose has one.
+            //Don't worry about bad certs if they exist
             req.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => { return true; };
             req.Method = "Post";
             //create our HTTP request in XML
@@ -76,9 +77,8 @@ namespace InternalSchedulingTool
             //Request is sent on the creation of XmlWriter
             using (XmlWriter writer = XmlWriter.Create(req.GetRequestStream(), settings))
             {
+                //You will be prompted to log in with YOUR nexpose username account and password
                 writer.WriteStartElement("LoginRequest");
-                //writer.WriteAttributeString("user-id", "test_service_account");
-                //writer.WriteAttributeString("password", "Rapid6ateRapid7");
                 writer.WriteAttributeString("user-id", username);
                 writer.WriteAttributeString("password", password);
                 writer.WriteEndElement();
@@ -97,7 +97,8 @@ namespace InternalSchedulingTool
         public List<Exception> exceptionList()
         {
             List<Exception> exps = new List<Exception>();
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.82.16.31:3780/api/1.1/xml");
+            //Replace the IP with the correct IP
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.10.10.10/api/1.1/xml");
             req.ContentType = "text/xml";
             //Don't worry about bad certs. We know nexpose has one.
             req.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => { return true; };
@@ -134,7 +135,7 @@ namespace InternalSchedulingTool
         public List<Device> siteDeviceList(string siteid)
         {
             List<Device> devices = new List<Device>();
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.82.16.31:3780/api/1.1/xml");
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.10.10.10:3780/api/1.1/xml");
             req.ContentType = "text/xml";
             //Don't worry about bad certs. We know nexpose has one.
             req.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => { return true; };
@@ -174,7 +175,7 @@ namespace InternalSchedulingTool
             Dictionary<string, string> siteList = new Dictionary<string, string>();
             string sitename;
             string siteid;
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.82.16.31:3780/api/1.1/xml");
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.10.10.10:3780/api/1.1/xml");
             req.ContentType = "text/xml";
             //Don't worry about bad certs. We know nexpose has one.
             req.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => { return true; };
@@ -206,7 +207,7 @@ namespace InternalSchedulingTool
         public List<Vulnerability> getVulnerabilities()
         {
             List<Vulnerability> vulnerabilities = new List<Vulnerability>();
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.82.16.31:3780/api/1.1/xml");
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.10.10.10:3780/api/1.1/xml");
             req.ContentType = "text/xml";
             //Don't worry about bad certs. We know nexpose has one.
             req.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => { return true; };
@@ -240,7 +241,7 @@ namespace InternalSchedulingTool
         public void generateReport(string scanid)
         {
             //First, save the report configuration
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.82.16.31:3780/api/1.1/xml");
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.10.10.10:3780/api/1.1/xml");
             req.ContentType = "text/xml";
             //Don't worry about bad certs. We know nexpose has one.
             req.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => { return true; };
@@ -288,7 +289,7 @@ namespace InternalSchedulingTool
         }
         public string createException(string deviceid, string vulnid, string reason, string comment)
         {
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.82.16.31:3780/api/1.2/xml");
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.10.10.10:3780/api/1.2/xml");
             req.ContentType = "text/xml";
             //Don't worry about bad certs. We know nexpose has one.
             req.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => { return true; };
@@ -335,7 +336,7 @@ namespace InternalSchedulingTool
         //ADD EXP TO THIS FUNCTION
         public string approveException(string exceptionid, string comment, string exp)
         {
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.82.16.31:3780/api/1.2/xml");
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://10.10.10.10:3780/api/1.2/xml");
             req.ContentType = "text/xml";
             //Don't worry about bad certs. We know nexpose has one.
             req.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => { return true; };
